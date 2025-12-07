@@ -15,17 +15,28 @@ private:
     GradeNode* gradesHead; 
     
     double getGradePoint(int numericGrade); 
+    bool checkGrade(int grade);
 
 public:
     
-    Student(string n, string id); 
-    
+    Student(){
+        name = "";
+        studentID = "";
+        currentGPA = 0.0;
+        completedCreditHours = 0;
+        gradesHead = nullptr;
+    } 
+    Student(string n, string id) {
+        name = n;
+        studentID = id;
+        currentGPA = 0.0;
+        completedCreditHours = 0;
+        gradesHead = nullptr;
+    }
     void calculateGPA(); 
-    
-    bool addGrade(string course, int value); 
-    bool RemoveGrade(string courseName); 
-    bool editGrade(string courseName, int value); 
-
+    bool addGrade(int value); 
+    bool RemoveGrade(int ind); 
+    bool EditGrade(int index, double ngrade);
+    void DisplayGrades(string studentID) ;
 }; 
-
 #endif 

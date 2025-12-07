@@ -1,6 +1,9 @@
 #include<iostream>
 #include "Student.h"
 
+bool checkGrade(int grade){
+return grade>=0 && grade <=100 ;}
+
 double Student::getGradePoint(int numericGrade) {
         if (numericGrade >= 90) return 4.0;
    else if (numericGrade >= 85) return 3.5;
@@ -22,12 +25,13 @@ void Student::calculateGPA() {
         int grade = current->numericGrade;
         double points = getGradePoint(grade);
         
-        // 1. تجميع النقاط الكلية (Points)
-        totalPoints += points * 3; // كل مقرر 3 ساعات
+        //  تجميع النقاط الكلية (Points)
+        totalPoints += points * 3; 
         
-        // 2. تجميع الساعات المكتملة (Completed Hours)
+        //  تجميع الساعات المكتملة (Completed Hours)
         if (grade >= 50) {
-            totalHours += 3; // تُحسب الساعات للدرجات >= 50
+            totalHours += 3;
+             // تُحسب الساعات للدرجات >= 50
         }
         
         current = current->next;
@@ -42,7 +46,97 @@ void Student::calculateGPA() {
     } else {
         currentGPA = 0.0;
     }}
-    bool Student::addGrade(string courseName,int value){
-          
+
+    bool Student::addGrade(int grade)
+    {
+       if(checkGrade(grade)){
+        GradeNode* newNode;
+        newNode = new GradeNode;
+        newNode->numericGrade = grade;
+        newNode->next = nullptr;
+        if (gradesHead == NULL) {
+            gradesHead = newNode;
+           
+             calculateGPA();
+            return true;
+        }
+
+        else {
+            GradeNode* temp = gradesHead;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+             calculateGPA();
+            return true;
+        }}
+        return false;
+
+    }    
+
+      bool Student::RemoveGrade(int ind){
+        GradeNode* prevNode = NULL;
+        GradeNode* currentNode = gradesHead;
+        int idx=0;
+        
+        while (currentNode != NULL && idx!=ind) {
+            prevNode = currentNode;
+            currentNode = currentNode->next;
+            idx++;
+        }
+        if (currentNode) {
+            if (prevNode) {
+                prevNode->next = currentNode->next;
+                delete currentNode;
+                calculateGPA();
+                return true;
+            }
+            else {
+                
+                gradesHead = currentNode->next;
+                delete currentNode;
+                calculateGPA();
+                return true;
+            }
+        }
+    }
+      
+     bool Student::EditGrade(int index, double ngrade) {
+     if (  checkGrade(ngrade) ){
+        if (index < 0) {
+            cout << "Index cannot be negative" << endl;
+            return false;
+        }
+
+        if (index >= 0 && gradesHead == nullptr) {
+            cout << "There is no grades to edit" << endl;
+            return false;
+        }
+
+        GradeNode* temp = gradesHead;
+        int currIndex = 0;
+        while (temp != NULL && currIndex < index) {
+            temp = temp->next;
+            currIndex++;
+        }
+        if (temp == NULL) {
+            return false;
+        }
+        temp-> numericGrade = ngrade;
+        calculateGPA();
+        return true;
+    }
+    return false;
     }
 
+//void Student::DisplayGrades(string studentID) {
+    //      while (temp != NULL && this->studentID!=studentID)
+    //     GradeNode* temp = gradesHead;
+    //     if (temp == NULL) {
+    //         cout << "There is no grads to display" << endl;
+    //     }
+    //     while (temp != NULL) {
+    //         cout << temp->numericGrade << endl;
+    //         temp = temp->next;
+    //     }
+    // }
