@@ -129,14 +129,5 @@ void Student::calculateGPA() {
     return false;
     }
 
-//void Student::DisplayGrades(string studentID) {
-    //      while (temp != NULL && this->studentID!=studentID)
-    //     GradeNode* temp = gradesHead;
-    //     if (temp == NULL) {
-    //         cout << "There is no grads to display" << endl;
-    //     }
-    //     while (temp != NULL) {
-    //         cout << temp->numericGrade << endl;
-    //         temp = temp->next;
-    //     }
-    // }
+
+

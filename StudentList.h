@@ -5,9 +5,8 @@
 
 class StudentNode{
     public:
-    Student* student=new Student();
+    Student* student;
     StudentNode* Next;
-
 };
 
 class StudentList{
@@ -17,7 +16,13 @@ StudentList(){
     head=nullptr;
 }
 
-void AddStudent();
+//  StudentNode* newNode = new StudentNode();
+// StudentList(Student* student){
+//     newNode->student=student;
+//     newNode->Next=nullptr;
+// }
+
+bool AddStudent(Student* student);
 void DisplayStudent() ;
 void sortbycompleted_hours ();
 void sortbyGPA ();

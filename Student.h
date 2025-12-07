@@ -7,7 +7,7 @@
 using namespace std;
 
 class Student {
-private:
+public:
     string name;
     string studentID; 
     double currentGPA;
@@ -16,8 +16,6 @@ private:
     
     double getGradePoint(int numericGrade); 
     bool checkGrade(int grade);
-
-public:
     
     Student(){
         name = "";
@@ -26,17 +24,25 @@ public:
         completedCreditHours = 0;
         gradesHead = nullptr;
     } 
-    Student(string n, string id) {
-        name = n;
-        studentID = id;
+    Student(string name, string studentID) {
+         if (studentID.empty() || name.empty()) {
+        cout << "Error: Name or ID cannot be empty." << endl;
+        return;
+    }
+       this->name = name;
+       this->studentID = studentID;
         currentGPA = 0.0;
         completedCreditHours = 0;
         gradesHead = nullptr;
     }
+
     void calculateGPA(); 
     bool addGrade(int value); 
     bool RemoveGrade(int ind); 
     bool EditGrade(int index, double ngrade);
     void DisplayGrades(string studentID) ;
+    double getCurrentGPA();
+    int getCompletedHours();
+    int getGradeCount();
 }; 
 #endif 
