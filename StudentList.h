@@ -16,11 +16,6 @@ StudentList(){
     head=nullptr;
 }
 
-//  StudentNode* newNode = new StudentNode();
-// StudentList(Student* student){
-//     newNode->student=student;
-//     newNode->Next=nullptr;
-// }
 
 bool AddStudent(Student* student);
 void DisplayStudent() ;

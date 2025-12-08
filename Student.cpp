@@ -29,9 +29,10 @@ void Student::calculateGPA() {
         totalPoints += points * 3; 
         
         //  تجميع الساعات المكتملة (Completed Hours)
+        
         if (grade >= 50) {
             totalHours += 3;
-             // تُحسب الساعات للدرجات >= 50
+    
         }
         
         current = current->next;
