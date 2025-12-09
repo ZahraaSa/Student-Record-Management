@@ -18,7 +18,6 @@ double Student::getGradePoint(int numericGrade) {
 void Student::calculateGPA() {
     double totalPoints = 0.0;
     int totalHours = 0;
-    
     GradeNode* current = gradesHead;
     
     while (current != nullptr) {
@@ -36,6 +35,7 @@ void Student::calculateGPA() {
         }
         
         current = current->next;
+
     }
 
     completedCreditHours = totalHours;
@@ -58,7 +58,7 @@ void Student::calculateGPA() {
         if (gradesHead == NULL) {
             gradesHead = newNode;
            
-             calculateGPA();
+            calculateGPA();
             return true;
         }
 
@@ -129,6 +129,15 @@ void Student::calculateGPA() {
     }
     return false;
     }
+int Student:: getGradeCount(){
+    int GradeCount=0;
+    GradeNode* current = gradesHead;
 
+ while (current != nullptr) {
+     current = current->next;
+    GradeCount++;
+    }
+    return GradeCount;
+}
 
 

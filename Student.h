@@ -41,8 +41,6 @@ public:
     bool RemoveGrade(int ind); 
     bool EditGrade(int index, double ngrade);
     void DisplayGrades(string studentID) ;
-    double getCurrentGPA();
-    int getCompletedHours();
     int getGradeCount();
 }; 
 #endif 

@@ -34,7 +34,8 @@
             Student* studentData = current->student;
             
             if (studentData != nullptr) {
-                cout << "\nStudent " << index << " ID: " << studentData->studentID << "):" << endl;
+                
+                cout << "Student " << index << " ID: " << studentData->studentID << "):" << endl;
                 cout << "  - Name: " << studentData->name << endl; 
                 
                 
@@ -49,49 +50,131 @@
         std::cout << "==========================================================" << std::endl;
     }
 
-    void StudentList::sortbycompleted_hours (){
-    if (head == nullptr || head->Next == nullptr) {
-            return;
+void StudentList::sortbycompleted_hours() {
+
+    if (head == nullptr || head->Next == nullptr)
+        return;
+
+    StudentNode* current = head;
+    StudentNode* prevCurrent = nullptr;
+
+    while (current != nullptr) {
+
+        StudentNode* minNode = current;
+        StudentNode* minPrev = prevCurrent;
+
+        StudentNode* ptrPrev = current;
+        StudentNode* ptr = current->Next;
+
+        while (ptr != nullptr) {
+            if (ptr->student->completedCreditHours < minNode->student->completedCreditHours) {
+                minNode = ptr;
+                minPrev = ptrPrev;
+            }
+            ptrPrev = ptr;
+            ptr = ptr->Next;
         }
 
-        StudentNode* current=head;
-        StudentNode* prevCurrent = nullptr;
-        int min_hours=current->student->completedCreditHours;
-      
-    while (current!=nullptr){
-        StudentNode* minNode = current;
-        StudentNode* minPrev = prevCurrent; 
-        StudentNode* temp = current;
-        StudentNode* ptr = current->Next;
-        StudentNode* ptrPrev = current;
-        temp=current;
-            min_hours=current->student->completedCreditHours;
-    while (ptr!=nullptr){
-    if (ptr->student->completedCreditHours<min_hours){
-        min_hours=ptr->student->completedCreditHours;
-        minNode=ptr;
-        minPrev=ptrPrev;
-    }
-    if (ptr->Next!=nullptr){
-    ptrPrev=ptr;
-    ptr=ptr->Next;
-    }}
-   
-     if (current!=minNode){
 
-     if (prevCurrent==nullptr){
-        temp->Next=minNode->Next;
-        minPrev->Next=temp;
-        minNode->Next=current->Next;
-        head=minNode;
-     }
-     else {
-     minNode->Next=current->Next;
-     prevCurrent=minNode;
-     temp=minNode->Next;
-     minPrev->Next=temp; 
-     }}
-     else continue;
-    prevCurrent=current;
-    current=current->Next;
-}}
+        // إذا minNode not current -> بدنا نبدل
+        if (minNode != current) {
+
+//head -> current
+            if (prevCurrent == nullptr) {
+
+                StudentNode* temp = minNode->Next;
+
+                minPrev->Next = current;
+                minNode->Next = current->Next;
+                current->Next = temp;
+                head = minNode;
+ //.zahraa.
+                prevCurrent = minNode;
+                current = minNode->Next;
+            }
+
+            else {
+
+                StudentNode* temp = minNode->Next;
+
+                prevCurrent->Next = minNode;
+                minPrev->Next = current;
+
+                minNode->Next = current->Next;
+                current->Next = temp;
+
+                prevCurrent = minNode;
+                current = minNode->Next;
+            }
+        }
+
+        else {
+            prevCurrent = current;
+            current = current->Next;
+        }
+    }
+}
+void StudentList::sortbyGPA() {
+
+    if (head == nullptr || head->Next == nullptr)
+        return;
+
+    StudentNode* current = head;
+    StudentNode* prevCurrent = nullptr;
+
+    while (current != nullptr) {
+
+        StudentNode* minNode = current;
+        StudentNode* minPrev = prevCurrent;
+
+        StudentNode* ptrPrev = current;
+        StudentNode* ptr = current->Next;
+
+        while (ptr != nullptr) {
+            if (ptr->student->currentGPA < minNode->student->currentGPA) {
+                minNode = ptr;
+                minPrev = ptrPrev;
+            }
+            ptrPrev = ptr;
+            ptr = ptr->Next;
+        }
+
+
+        // إذا minNode not current -> بدنا نبدل
+        if (minNode != current) {
+
+//head -> current
+            if (prevCurrent == nullptr) {
+
+                StudentNode* temp = minNode->Next;
+
+                minPrev->Next = current;
+                minNode->Next = current->Next;
+                current->Next = temp;
+                head = minNode;
+ //.zahraa.
+                prevCurrent = minNode;
+                current = minNode->Next;
+            }
+
+            else {
+
+                StudentNode* temp = minNode->Next;
+
+                prevCurrent->Next = minNode;
+                minPrev->Next = current;
+
+                minNode->Next = current->Next;
+                current->Next = temp;
+
+                prevCurrent = minNode;
+                current = minNode->Next;
+            }
+        }
+
+        else {
+            prevCurrent = current;
+            current = current->Next;
+        }
+    }
+}
