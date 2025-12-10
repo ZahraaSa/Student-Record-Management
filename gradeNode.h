@@ -1,16 +1,13 @@
 #ifndef GRADENODE_H
 #define GRADENODE_H
 
-
 class GradeNode {
-    public:
-     
-     int numericGrade;
-     GradeNode* next; 
+public:
+    int numericGrade;
+    GradeNode* next;
 
-    GradeNode(){
-        next=nullptr;
+    GradeNode() {
+        next = nullptr;
     }
 };
-#endif 
-
+#endif

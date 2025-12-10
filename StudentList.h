@@ -1,27 +1,31 @@
-#ifndef STUDENTLIST_H   
-#define STUDENTLIST_H 
+#ifndef STUDENTLIST_H
+#define STUDENTLIST_H
+
 #include <iostream>
 #include "Student.h"
 
-class StudentNode{
-    public:
+using namespace std;
+
+class StudentNode {
+public:
     Student* student;
     StudentNode* Next;
 };
 
-class StudentList{
+class StudentList {
 public:
-StudentNode* head;
-StudentList(){
-    head=nullptr;
-}
+    StudentNode* head;
 
+    StudentList() {
+        head = nullptr;
+    }
 
-bool AddStudent(Student* student);
-void DisplayStudent() ;
-void sortbycompleted_hours ();
-void sortbyGPA ();
-void DisplayGrade();
+    ~StudentList();
 
+    bool AddStudent(Student* student);
+    void DisplayStudents();
+    void sortByCompletedHoursDescending();
+    void sortByGPADescending();
+    Student* FindStudentByID(const string& id);
 };
 #endif

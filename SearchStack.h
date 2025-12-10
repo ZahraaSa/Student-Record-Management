@@ -1,3 +1,11 @@
+#ifndef SEARCHSTACK_H
+#define SEARCHSTACK_H
+
+#include <string>
+#include <iostream>
+
+using namespace std;
+
 class SearchHistoryNode {
 public:
     string studentID;
@@ -10,6 +18,7 @@ public:
         next = nullptr;
     }
 };
+
 class SearchHistoryStack {
 private:
     SearchHistoryNode* head;
@@ -20,27 +29,37 @@ public:
         count = 0;
     }
 
-    void Push(string ID,string operation){
+    ~SearchHistoryStack() {
+        while (!isEmpty()) {
+            pop();
+        }
+    }
+
+    void Push(string ID, string operation) {
         SearchHistoryNode* newnode = new SearchHistoryNode(ID, operation);
         newnode->next = head;
         head = newnode;
-            count++;
+        count++;
     }
-    bool isEmpty(){
+
+    bool isEmpty() {
         return head == nullptr;
     }
-    void Display(){
+
+    void Display() {
         if (isEmpty()) {
             cout << "Search history is empty" << endl;
             return;
-    }
-        cout << "Search hostory from newest to oldest" << endl;
+        }
+        cout << "Search history from newest to oldest" << endl;
         SearchHistoryNode* temp = head;
         while (temp != nullptr) {
-            cout << "ID:" << temp->studentID << "The operation is:" << temp->operation << endl;
+            cout << "ID: " << temp->studentID << " The operation is: " << temp->operation << endl;
+            temp = temp->next;
         }
-        cout << "Total record lookuos:" << count << endl;
+        cout << "Total record lookups: " << count << endl;
     }
+
     bool pop() {
         if (isEmpty()) {
             cout << "There is no element to pop" << endl;
@@ -52,6 +71,7 @@ public:
         count--;
         return true;
     }
+
     SearchHistoryNode* top() {
         if (isEmpty()) {
             cout << "There is no element" << endl;
@@ -60,3 +80,4 @@ public:
         return head;
     }
 };
+#endif
