@@ -23,7 +23,7 @@ This project was developed jointly by two students.
 | Team Member | 
 
 
-| **[Moh_ali_alw]**| I
-| **[ZahraaSa]** |
+| **[@Mohamed-Ghosen2]**| I
+| **[@ZahraaSa]** |
 
 <img width="842" height="1114" alt="umlads" src="https://github.com/user-attachments/assets/7ced2970-0fb5-457b-8bb1-ed557c200dd7" />
